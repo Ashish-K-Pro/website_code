@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow-x: hidden;
+}
+
+.embla {
+  overflow: hidden;
+  --slide-size: 25%;
+  --slide-spacing: 0.25rem;
+  position: relative;
+  z-index: 10;
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+
+.embla:before, .embla:after {
+    --curve-height: 120px;
+
+    content: "";
+    z-index: 20;
+    display: block;
+    position: absolute;
+    background: white;
+    width: 100%;
+    height: var(--curve-height);
+    border-radius: 45%;
+}
+
+@media (max-width: 768px) {
+  .embla:before, .embla:after {
+    --curve-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .embla:before, .embla:after {
+    --curve-height: 40px;
+  }
+}
+
+.embla:before {
+    top: calc(-0.7 * var(--curve-height));
+}
+
+.embla:after {
+    bottom: calc(-0.7 * var(--curve-height));
+}
+
+.main-banner-container {
+  position: absolute;
+  width: 100%;
+  height: 430px;
+  overflow: hidden;
+  z-index: 30;
+}
+
+.banner-container {
+  display: flex; 
+  overflow: hidden;
+  position: relative;
+  top:0;
+  left:0;
+  width: 200%; 
+  /* rotate : -12.5deg; */
+  animation: marquee 5s linear infinite;
+}
+
+.banner-image {
+  flex-shrink: 0;
+  width: 50%; 
+}
+
+.hover\:underline-custom:hover {
+  font-weight: bold;
+  font-size: 110%;
+  padding-bottom: 2px; /* Adjust the padding as needed */
+  color: #8F264F; /* Adjust the color as needed */
+}
+
+.hover\:bg-sky-700:hover {
+  background-color: #0369a1;
+}
+
+@keyframes marquee {
+  0% {
+      transform: translateX(0%);
+  }
+  100% {
+      transform: translateX(-50%);
+  }
+}
